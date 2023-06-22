@@ -6,6 +6,7 @@ namespace DungeonsOfDoom.Core.Characters
     {
         public const int MaxHealth = 20;
 
+        int attackDmg = 10;
         public Player() : base(MaxHealth)
         {
             Backpack = new List<Item>();
@@ -16,12 +17,24 @@ namespace DungeonsOfDoom.Core.Characters
         public int Y { get; set; }
         public override void Attack(Character monster)
         {
-            int attack = 10;
-            monster.Health = monster.Health - attack;
-            //if (monster.IsAlive)
-            //{
-                
-            //}
+            bool itemInBackPack = true;
+            do
+            {
+
+                for (int i = 0; i < Backpack.Count; i++)
+                {
+                    if (Backpack[i] is GlovesOfMetal)
+                    {
+                        itemInBackPack = true; break;
+                    }
+                }
+                attackDmg = attackDmg + 10;
+
+            } while (itemInBackPack == false);
+
+
+
+            monster.Health = monster.Health - attackDmg;
 
         }
     }
