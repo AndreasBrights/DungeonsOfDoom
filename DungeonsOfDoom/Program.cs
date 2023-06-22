@@ -1,6 +1,7 @@
 ﻿using DungeonsOfDoom.Core;
 using DungeonsOfDoom.Core.Characters;
 using DungeonsOfDoom.Core.Items;
+using System.Security;
 using System.Text;
 
 namespace DungeonsOfDoom
@@ -9,7 +10,7 @@ namespace DungeonsOfDoom
     {
         Room[,] rooms;
         Player player;
-        
+
         static void Main(string[] args)
         {
             Program program = new Program();
@@ -23,7 +24,7 @@ namespace DungeonsOfDoom
 
             player = new Player();
             CreateRooms();
-             
+
             do
             {
                 Console.Clear();
@@ -64,7 +65,7 @@ namespace DungeonsOfDoom
         {
             for (int y = 0; y < rooms.GetLength(1); y++)
             {
-                for (int x = 0; x < rooms.GetLength(0); x++)    
+                for (int x = 0; x < rooms.GetLength(0); x++)
                 {
                     Room room = rooms[x, y];
                     if (player.X == x && player.Y == y)
@@ -127,6 +128,21 @@ namespace DungeonsOfDoom
             {
                 player.Backpack.Add(currentRoom.ItemInRoom);
                 currentRoom.ItemInRoom = null;
+            }
+            if (currentRoom.MonsterInRoom != null)
+            {
+                player.Attack(currentRoom.MonsterInRoom);
+
+                if (currentRoom.MonsterInRoom.IsAlive)
+                {
+                    currentRoom.MonsterInRoom.Attack(player);
+                }
+                else if (currentRoom.MonsterInRoom.IsAlive == false)
+                {
+                    currentRoom.MonsterInRoom = null;
+                }
+
+
             }
         }
 
