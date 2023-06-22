@@ -87,6 +87,8 @@ namespace DungeonsOfDoom
             {
                 Console.WriteLine(item.Name);
             }
+            
+            Console.WriteLine();
         }
 
         bool AskForMovement()
