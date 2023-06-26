@@ -1,4 +1,6 @@
-﻿namespace DungeonsOfDoom.Core.Items
+﻿using DungeonsOfDoom.Core.Characters;
+
+namespace DungeonsOfDoom.Core.Items
 {
     abstract class Item
     {
@@ -8,5 +10,9 @@
         }
 
         public string Name { get; set; }
+
+        public virtual void Use(Player player)
+        {
+        }
     }
 }

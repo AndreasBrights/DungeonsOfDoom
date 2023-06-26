@@ -7,7 +7,11 @@ using System.Text;
 namespace DungeonsOfDoom
 {
     class Program
+
     {
+        public const int WorldWidth = 20;
+        public const int WorldHeight = 5;
+
         Room[,] rooms;
         Player player;
 
@@ -41,7 +45,7 @@ namespace DungeonsOfDoom
 
         void CreateRooms()
         {
-            rooms = new Room[20, 5];
+            rooms = new Room[WorldWidth, WorldHeight];
             for (int y = 0; y < rooms.GetLength(1); y++)
             {
                 for (int x = 0; x < rooms.GetLength(0); x++)
@@ -83,13 +87,13 @@ namespace DungeonsOfDoom
 
         void DisplayStats()
         {
-            Console.WriteLine($"❤️{player.Health}/{Player.MaxHealth}");
+            Console.WriteLine($"❤️{player.Health}/{Player.MaxHealth}"); Console.WriteLine($"⚔️{player.AttackDmg}");
             foreach (var item in player.Backpack)
             {
                 Console.WriteLine(item.Name);
             }
+
             
-            Console.WriteLine();
         }
 
         bool AskForMovement()
@@ -127,6 +131,7 @@ namespace DungeonsOfDoom
             if (currentRoom.ItemInRoom != null)
             {
                 player.Backpack.Add(currentRoom.ItemInRoom);
+                currentRoom.ItemInRoom.Use(player);
                 currentRoom.ItemInRoom = null;
             }
             if (currentRoom.MonsterInRoom != null)

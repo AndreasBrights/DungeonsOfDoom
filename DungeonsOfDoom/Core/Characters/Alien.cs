@@ -2,15 +2,15 @@
 {
     class Alien : Monster
     {
-        public Alien() : base("Alien", "👽", 20)
+        public Alien() : base("Alien", "👽", 25, 5) 
         {
         }
         public override void Attack(Character player)
         {
             int attack = 5;
-            if ( player.Health > Health * 2)
+            if ( player.Health >= Health * 2)
             {
-                attack = 1;
+                AttackDmg = 1;
             }
             player.Health = player.Health - attack;
 
