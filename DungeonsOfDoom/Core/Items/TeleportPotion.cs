@@ -8,13 +8,6 @@ namespace DungeonsOfDoom.Core.Items
         public TeleportPotion() : base("Teleport Potion")
         {
         }
-
-        public override void Use(Player player)
-        {
-            player.AttackDmg += 10;
-
-        }
-
         public override void Use(Player player)
         {
             player.Health += 5;
