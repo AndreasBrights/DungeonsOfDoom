@@ -1,4 +1,6 @@
-﻿namespace DungeonsOfDoom.Core.Characters
+﻿using DungeonsOfDoom.Core.Items;
+
+namespace DungeonsOfDoom.Core.Characters
 {
     abstract class Monster : Character
     {
@@ -6,8 +8,10 @@
         {
             Name = name;
             Face = face;
+            MonsterCounter++;
         }
-
+        //  public static List<Monster> MonsterCounter { get; set; }
+        public static int MonsterCounter { get; set; }
         public string Name { get; }
         public string Face { get; set; }
 

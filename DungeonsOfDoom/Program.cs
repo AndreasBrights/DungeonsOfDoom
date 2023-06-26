@@ -34,7 +34,7 @@ namespace DungeonsOfDoom
                 {
                     ExploreRoom();
                 }
-            } while (player.IsAlive);
+            } while (player.IsAlive && Monster.MonsterCounter != 0);
 
             GameOver();
         }
@@ -50,13 +50,21 @@ namespace DungeonsOfDoom
 
                     int spawnChance = Random.Shared.Next(1, 100 + 1);
                     if (spawnChance < 5)
+                    {
                         rooms[x, y].MonsterInRoom = new Ghost();
+                       // Monster.MonsterCounter.Add(rooms[x, y].MonsterInRoom);
+                    }
                     else if (spawnChance < 10)
+                    {
                         rooms[x, y].MonsterInRoom = new Alien();
+                        //Monster.MonsterCounter.Add(rooms[x, y].MonsterInRoom);
+                    }
                     else if (spawnChance < 20)
                         rooms[x, y].ItemInRoom = new GlovesOfMetal();
                     else if (spawnChance < 25)
                         rooms[x, y].ItemInRoom = new TeleportPotion();
+
+                    
                 }
             }
         }
@@ -83,7 +91,10 @@ namespace DungeonsOfDoom
 
         void DisplayStats()
         {
-            Console.WriteLine($"❤️{player.Health}/{Player.MaxHealth}");
+            Console.WriteLine($"❤️{player.Health}/{Player.MaxHealth}"); Console.WriteLine($"⚔️{player.AttackDmg}" +
+                $"\nMonster: {Monster.MonsterCounter}");
+
+
             foreach (var item in player.Backpack)
             {
                 Console.WriteLine(item.Name);
@@ -138,6 +149,7 @@ namespace DungeonsOfDoom
                 else if (currentRoom.MonsterInRoom.IsAlive == false)
                 {
                     currentRoom.MonsterInRoom = null;
+                    Monster.MonsterCounter--;
                 }
 
 
@@ -147,7 +159,11 @@ namespace DungeonsOfDoom
         void GameOver()
         {
             Console.Clear();
+            if (player.IsAlive)
+                Console.WriteLine("You won!");
+            else
             Console.WriteLine("Game over...");
+
             Console.ReadKey();
             Play();
         }
