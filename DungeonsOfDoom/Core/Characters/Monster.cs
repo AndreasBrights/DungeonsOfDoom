@@ -4,7 +4,7 @@ namespace DungeonsOfDoom.Core.Characters
 {
     abstract class Monster : Character
     {
-        public Monster(string name, string face, int health) : base(health)
+        public Monster(string name, string face, int health) : base(health, 0)
         {
             Name = name;
             Face = face;

@@ -136,6 +136,7 @@ namespace DungeonsOfDoom
             if (currentRoom.ItemInRoom != null)
             {
                 player.Backpack.Add(currentRoom.ItemInRoom);
+                currentRoom.ItemInRoom.Use(player);
                 currentRoom.ItemInRoom = null;
             }
             if (currentRoom.MonsterInRoom != null)

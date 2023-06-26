@@ -2,11 +2,11 @@
 {
     abstract class Character
     {
-        public Character(int health)
+        public Character(int health, int attackDmg)
         {
             maxHealth = health;
             Health = health;
-            
+            AttackDmg = attackDmg;
         }
 
         public int Health { get; set; }
@@ -14,7 +14,7 @@
         public int MaxHealth;
         public int maxHealth { get; set; }
         public int AttackDmg { get; set; }
-        public int Health;
+        
         public int health
         {
             get { return Health; }
