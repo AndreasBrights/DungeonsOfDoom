@@ -2,7 +2,7 @@
 {
     class Ghost : Monster
     {
-        public Ghost() : base("Ghost", "👻", 10)
+        public Ghost() : base("Ghost", "👻", 15, 10)
         {
         }
         public override void Attack(Character player)

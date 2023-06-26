@@ -13,5 +13,6 @@ namespace DungeonsOfDoom.Core.Items
             player.AttackDmg += 10;
 
         }
+
     }
 }

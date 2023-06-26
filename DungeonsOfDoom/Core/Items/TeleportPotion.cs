@@ -1,4 +1,5 @@
 ﻿using DungeonsOfDoom.Core.Characters;
+using System.Reflection.Metadata;
 
 namespace DungeonsOfDoom.Core.Items
 {
@@ -11,6 +12,14 @@ namespace DungeonsOfDoom.Core.Items
         public override void Use(Player player)
         {
             player.AttackDmg += 10;
+
+        }
+
+        public override void Use(Player player)
+        {
+            player.Health += 5;
+            player.X = Random.Shared.Next(Program.WorldWidth);
+            player.Y = Random.Shared.Next(Program.WorldHeight);
 
         }
     }

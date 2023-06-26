@@ -8,13 +8,11 @@
             Health = health;
             AttackDmg = attackDmg;
         }
-
-        public int Health { get; set; }
         public bool IsAlive { get { return Health > 0; } }
         public int MaxHealth;
         public int maxHealth { get; set; }
         public int AttackDmg { get; set; }
-        
+        public int Health;
         public int health
         {
             get { return Health; }
@@ -25,7 +23,7 @@
             }
         }
 
-        public abstract void Attack(Character monster);
+        public abstract void Attack(Character opponent);
 
     }
 }

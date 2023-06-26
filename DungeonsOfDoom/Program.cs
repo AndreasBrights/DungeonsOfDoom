@@ -7,7 +7,11 @@ using System.Text;
 namespace DungeonsOfDoom
 {
     class Program
+
     {
+        public const int WorldWidth = 20;
+        public const int WorldHeight = 5;
+
         Room[,] rooms;
         Player player;
 
@@ -41,7 +45,7 @@ namespace DungeonsOfDoom
 
         void CreateRooms()
         {
-            rooms = new Room[20, 5];
+            rooms = new Room[WorldWidth, WorldHeight];
             for (int y = 0; y < rooms.GetLength(1); y++)
             {
                 for (int x = 0; x < rooms.GetLength(0); x++)
@@ -99,6 +103,8 @@ namespace DungeonsOfDoom
             {
                 Console.WriteLine(item.Name);
             }
+
+            
         }
 
         bool AskForMovement()
