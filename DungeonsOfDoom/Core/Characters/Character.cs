@@ -4,22 +4,25 @@
     {
         public Character(int health, int attackDmg)
         {
-            maxHealth = health;
+            MaxHealth = health;
             Health = health;
             AttackDmg = attackDmg;
         }
         public bool IsAlive { get { return Health > 0; } }
-        public int MaxHealth;
-        public int maxHealth { get; set; }
+        public int MaxHealth { get; set; }
         public int AttackDmg { get; set; }
-        public int Health;
-        public int health
+        public int health;
+        public virtual int Health
         {
-            get { return Health; }
+            get { return health; }
             set
             {
-                if (value >= 0 && value <= maxHealth)
-                    Health = value;
+                if (value < 0)
+                    health = 0;
+                else if (value > MaxHealth)
+                    health = MaxHealth;
+                else
+                    health = value;
             }
         }
 

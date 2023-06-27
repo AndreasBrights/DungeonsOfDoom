@@ -38,7 +38,7 @@ namespace DungeonsOfDoom
                 {
                     ExploreRoom();
                 }
-            } while (player.IsAlive);
+            } while (player.IsAlive && Monster.MonsterCounter != 0);
 
             GameOver();
         }
@@ -87,13 +87,14 @@ namespace DungeonsOfDoom
 
         void DisplayStats()
         {
-            Console.WriteLine($"❤️{player.Health}/{Player.MaxHealth}"); Console.WriteLine($"⚔️{player.AttackDmg}");
+            Console.WriteLine($"❤️{player.Health}/{Player.MaxHealth}\t\t\t{Monster.MonsterCounter} monsters left"); 
+            Console.WriteLine($"⚔️{player.AttackDmg}");
             foreach (var item in player.Backpack)
             {
                 Console.WriteLine(item.Name);
             }
 
-            
+
         }
 
         bool AskForMovement()
@@ -137,16 +138,15 @@ namespace DungeonsOfDoom
             if (currentRoom.MonsterInRoom != null)
             {
                 player.Attack(currentRoom.MonsterInRoom);
-
                 if (currentRoom.MonsterInRoom.IsAlive)
                 {
-                    currentRoom.MonsterInRoom.Attack(player);
+                currentRoom.MonsterInRoom.Attack(player);
                 }
-                else if (currentRoom.MonsterInRoom.IsAlive == false)
-                {
-                    currentRoom.MonsterInRoom = null;
-                }
-
+            else if (currentRoom.MonsterInRoom.IsAlive == false)
+            {
+                player.Backpack.Add(currentRoom.MonsterInRoom);
+                currentRoom.MonsterInRoom = null;
+            }
 
             }
         }
@@ -154,7 +154,8 @@ namespace DungeonsOfDoom
         void GameOver()
         {
             Console.Clear();
-            Console.WriteLine("Game over...");
+            string msg = player.IsAlive ? "\n\tYou won!" : "\n\tGame Over!";
+            Console.WriteLine(msg);
             Console.ReadKey();
             Play();
         }

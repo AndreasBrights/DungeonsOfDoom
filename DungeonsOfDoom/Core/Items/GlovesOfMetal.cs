@@ -1,12 +1,16 @@
-﻿namespace DungeonsOfDoom.Core.Items
+﻿using DungeonsOfDoom.Core.Characters;
+
+namespace DungeonsOfDoom.Core.Items
 {
     class GlovesOfMetal : Item
     {
         public GlovesOfMetal() : base("Gloves of Metal")
         {
-            int bonusDamage = 10;
-           
         }
 
+        public override void Use(Player player)
+        {
+            player.AttackDmg += 10;
+        }
     }
 }

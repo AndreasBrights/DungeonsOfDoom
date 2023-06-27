@@ -5,6 +5,10 @@
         public Alien() : base("Alien", "👽", 25, 5) 
         {
         }
+
+        private int attackDmg;
+
+       
         public override void Attack(Character player)
         {
             int attack = 5;

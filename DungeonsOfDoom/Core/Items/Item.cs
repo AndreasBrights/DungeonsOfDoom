@@ -2,7 +2,7 @@
 
 namespace DungeonsOfDoom.Core.Items
 {
-    abstract class Item
+    abstract class Item : IPortable
     {
         public Item(string name)
         {
